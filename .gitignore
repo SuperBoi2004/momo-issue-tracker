@@ -1,0 +1,4 @@
+config/trusted-authors.json
+output/
+__pycache__/
+*.pyc

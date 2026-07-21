@@ -1,0 +1,46 @@
+{
+  "repositories": [
+    {
+      "name": "Harbor",
+      "repo": "goharbor/harbor",
+      "source": {
+        "repo": "goharbor/community",
+        "path": "MAINTAINERS.md",
+        "type": "markdown",
+        "include": ["Maintainers", "SIG Community", "Harbor Core Contributors & Stakeholders"],
+        "exclude": ["Emeritus Maintainers"]
+      }
+    },
+    {
+      "name": "LitmusChaos",
+      "repo": "litmuschaos/litmus",
+      "source": {
+        "repo": "litmuschaos/litmus",
+        "path": "MAINTAINERS.md",
+        "type": "markdown",
+        "include": ["Component-Wise Code Owners & Primary Reviewers", "Consolidated Maintainers List", "Consolidated Reviewers List"],
+        "exclude": ["Emeritus Maintainers", "Emeritus Reviewers"]
+      }
+    },
+    {
+      "name": "Headlamp",
+      "repo": "kubernetes-sigs/headlamp",
+      "source": {
+        "repo": "kubernetes-sigs/headlamp",
+        "path": "OWNERS_ALIASES",
+        "type": "owners",
+        "keys": ["headlamp-maintainers", "headlamp-reviewers"]
+      }
+    },
+    {
+      "name": "KubeVirt",
+      "repo": "kubevirt/kubevirt",
+      "source": {
+        "repo": "kubevirt/kubevirt",
+        "path": "OWNERS_ALIASES",
+        "type": "owners",
+        "keys": ["approvers", "code-reviewers"]
+      }
+    }
+  ]
+}

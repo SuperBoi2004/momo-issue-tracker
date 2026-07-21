@@ -1,0 +1,46 @@
+name: Daily trusted issue digest
+
+on:
+  schedule:
+    # 10:00 AM IST; India Standard Time has no daylight-saving changes.
+    - cron: "30 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-trusted-issue-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Generate digest
+        run: python3 scripts/monitor.py
+
+      - name: Store dated digest
+        run: |
+          date="$(date -u +%F)"
+          mkdir -p digests
+          cp "output/digest-${date}.md" "digests/${date}.md"
+
+      - name: Commit digest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add digests
+          if git diff --cached --quiet; then
+            echo "Digest is unchanged; nothing to commit."
+          else
+            git commit -m "digest: $(date -u +%F)"
+            git push
+          fi
